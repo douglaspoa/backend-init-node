@@ -1,0 +1,7 @@
+/node_modules
+/data
+/gen
+.idea
+.env
+package-lock.json
+```

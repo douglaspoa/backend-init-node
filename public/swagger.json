@@ -1,0 +1,206 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "News Editor API",
+    "description": "API for a news editor app built with Node.js, Express, and MongoDB."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/chat" : {
+      "post" : {
+        "summary" : "Get a text from chatgpt",
+        "parameters" : [
+          {
+            "name" : "text",
+            "in" : "body",
+            "description" : "Text to be sent to chatgpt",
+            "required" : true,
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "text" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "description" : "Text from chatgpt",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "text" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Array of User objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "summary": "Get all posts",
+        "responses": {
+          "200": {
+            "description": "Array of Post objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/domains": {
+      "get": {
+        "summary": "Get all domains",
+        "responses": {
+          "200": {
+            "description": "Array of Domain objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Domain"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feeds": {
+      "get": {
+        "summary": "Get all feeds",
+        "responses": {
+          "200": {
+            "description": "Array of Feed objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feed"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "id_domain": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Post": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "text_chatgpt": {
+          "type": "string"
+        },
+        "text_editor": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "id_user": {
+          "type": "string"
+        },
+        "difference_between_text": {
+          "type": "integer"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "review": {
+          "type": "string",
+          "enum": ["pending", "approved"]
+        }
+      }
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Feed": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
